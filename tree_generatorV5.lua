@@ -206,11 +206,12 @@ cursor = {
 tree_settings = {
   --left page
   {name = 'Trunk Width', val = 5, min = 1, max = 24, step = 1, update = function() update_trunk_width() end},
-  {name = 'Trunk Height', val = 38, min = 16, max = 80, step = 1, update = function() update_trunk_height() end},
+  {name = 'Trunk Height', val = 38, min = 1, max = 80, step = 1, update = function() update_trunk_height() end},
   {name = 'Step Height', val = 8, min = 1, max = 8, step = 1},
   {name = 'Shift/Step', val = 1, min = 0, max = 8, step = 1},
-  {name = 'Sprite ID', val = 0, min = 0, max = 15, step = 1, update = function(self) tree.id = self.val end},
-  {name = 'Branch Length', val = 12, min = 8, max = 32, step = 1},
+  {name = 'Bark ID', val = 0, min = 0, max = 15, step = 1, update = function(self) tree.id = self.val end},
+  {name = 'Leaves ID', val = 0, min = 0, max = 15, step = 1, update = function(self) leaf.id = self.val end},
+  {name = 'Branch Length', val = 12, min = 1, max = 32, step = 1},
   {name = 'Branch Width', val = 3, min = 2, max = 8, step = 1},
   {name = 'Br. Thickness', val = 2, min = 1, max = 8, step = 1},
   {name = 'Branch Height', val = 4, min = 1, max = 16, step = 1},
@@ -219,7 +220,7 @@ tree_settings = {
   {name = 'Branch Deviation', val = 16, min = 1, max = 16, step = 1},
   {name = 'Leaf Density', val = 1.0, min = 0, max = 1.0, step = 0.05},
   {name = 'Leaf Cull Dist', val = 2, min = 0, max = 10, step = 1},
-  {name = 'Leaf Fill Radius', val = 12, min = 4, max = 24, step = 1},
+  {name = 'Leaf Fill Radius', val = 12, min = 1, max = 24, step = 1},
   {name = 'Leaf Fill Count', val = 65, min = 0, max = 150, step = 5},
   {name = 'Vine count', val = 2, min = 0, max = 10, step = 1},
 
@@ -418,6 +419,7 @@ function generate_tree()
   local bl, bw, bt, bh, bs, nb, bd, lc, vn = t[6], t[7], t[8], t[9], t[10], t[11], t[12], t[14], t[17]
   local rad, count = t[15], t[16].val
   tree.id = sid.val
+  leaf.id = sid.val
   local x, y = tx, ty
   tree.trunk = {{x1 = x, y1 = y, x2 = x + tw.val, y2 = y}}
   local i, last_height = 2, y
